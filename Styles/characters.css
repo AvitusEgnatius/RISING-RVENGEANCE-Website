@@ -1,0 +1,81 @@
+/* #region Text */
+
+.highlight.title {
+    /* Used to differentiate the Character Title from the other h1s */
+}
+
+.highlight.shadow {
+    color: var(--color-primary);
+    font-size: 120px;
+    /* Create an Outline around the Text */
+    text-shadow:
+    -1px -1px 0 var(--color-accent),
+    1px -1px 0 var(--color-accent),
+    -1px 1px 0 var(--color-accent),
+    1px 1px 0 var(--color-accent);
+}
+
+.highlight.shadow.background {
+    line-height: 100px;
+    opacity: 0.5;
+}
+
+/* #endregion Text */
+
+/* #region Sections */
+
+section.character {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+section.character .highlight.title, .highlight.shadow {
+    grid-column: 1;
+    grid-row: 2;
+    justify-self: center;
+    align-self: center;
+}
+
+section.character h1 {
+    z-index: 1;
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    justify-self: center;
+    align-self: center;
+}
+
+section.character img {
+    grid-row: 1 / span 2;
+    grid-column: 1;
+    align-self: center;
+    justify-self: flex-end;
+}
+
+section.character .highlight.shadow.background {
+    z-index: -1;
+    grid-row: 1 / span 2;
+    grid-column: 1 / span 2;
+    align-self: center;
+    justify-self: center;
+}
+
+section.character .highlight.audio {
+    grid-column: 2;
+    grid-row: 2;
+    justify-self: center;
+    align-self: center;
+}
+
+    /* #region Hero */
+
+    section.hero .background {
+        background: url("../Media/Hero2.jpg");
+        background-repeat: no-repeat;
+        background-position: top;
+        background-size: cover;
+    }
+
+    /* #endregion Hero */
+
+/* #endregion Sections */

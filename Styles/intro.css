@@ -1,0 +1,68 @@
+/* #region Sections */
+
+section video {
+    /* Behind the Parent Element*/
+    z-index: -1;
+    grid-row: 1;
+    grid-column: 1;
+    width: 95%;
+    height: 90%;
+    margin: 35px;
+    /* Fill the given dimension */
+    object-fit: cover;
+}
+
+section.action h1, section.ideals h1, section.nature h1 {
+    grid-row: 1;
+    grid-column: 1;
+    align-self: flex-end;
+}
+
+    /* #region Hero */
+    
+    section.hero .background {
+        background: url("../Media/Hero.jpg");
+        background-repeat: no-repeat;
+        background-position: top;
+        background-size: cover;
+    }
+    
+    /* #endregion Hero */
+    
+    /* #region Action */
+    
+    section.action h1 {
+        justify-self: flex-start;
+    }
+    
+    section.action video {
+        clip-path: polygon(50% 0%, 100% 0, 100% 100%, 0 85%, 0 0);
+    }
+    
+    /* #endregion Action */
+    
+    /* #region Ideals */
+    
+    section.ideals h1 {
+        justify-self: flex-end;
+    }
+    
+    section.ideals video {
+        clip-path: polygon(50% 0%, 100% 0, 100% 85%, 0 100%, 0 0);
+    }
+    
+    /* #endregion Ideals */
+    
+    /* #region Nature */
+
+    section.nature h1 {
+        justify-self: center;
+    }
+
+    section.nature video {
+        clip-path: polygon(100% 0, 100% 95%, 50% 88%, 0 98%, 0 0);
+    }
+
+/* #endregion Nature */
+
+/* #endregion Sections */

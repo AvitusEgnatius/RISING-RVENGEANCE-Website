@@ -1,0 +1,338 @@
+:root {
+    /* Declare color variables */
+    --color-secondary: #fff;
+    --color-primary: #000;
+    --color-accent: #f00000;
+}
+
+* {
+    /* Remove all preset margins */
+    margin: 0;
+    /* Hide Normal Cursor */
+    cursor: none;
+    /* Disable Text Highlighting */
+    user-select: none;
+}
+
+html {
+    background-color: var(--color-primary);
+    /* Hide Overflow caused by the Custom Cursor */
+    overflow: hidden;
+}
+
+/* #region Custom Cursor */
+
+.custom-cursor {
+    z-index: 3;
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    top: 50%;
+    left: 50%;
+    border-radius: 100vh;
+    background: var(--color-accent);
+    mix-blend-mode: exclusion;
+    transition: 100ms;
+    transition-timing-function: ease-out;
+    pointer-events: none;
+}
+
+.custom-cursor.clickable {
+    width: 35px;
+    height: 35px;
+    opacity: 0.4;
+}
+
+/* #endregion Custom Cursor */
+
+/* #region Fonts */
+
+@font-face {
+    font-family: "Basement Grotesque";
+    src: url(../Fonts/BasementGrotesque-Black_v1.202.otf);
+}
+
+@font-face {
+    font-family: "Aileron";
+    src: url(../Fonts/Aileron-SemiBold.otf);
+}
+
+/* #endregion Fonts */
+
+/* #region Text */
+
+h1, p, a, span {
+    font-family: "Aileron", sans-serif;
+    color: var(--color-secondary);
+    text-align: center;
+}
+
+h1, p {
+    text-shadow: 0 0 5px whitesmoke
+}
+
+h1 {
+    padding: 20px;
+    font-size: 75px;
+}
+
+p{
+    padding: 20px;
+    font-size: 30px;
+}
+
+a {
+    padding: 4px;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.empower {
+    font-family: "Basement Grotesque", sans-serif;
+}
+
+.highlight {
+    font-family: "Basement Grotesque", sans-serif;
+    color: var(--color-accent);
+    text-shadow: 0 0 10px var(--color-accent);
+    font-size: 90px;
+    /* Appear a bit over the Empowered text */
+    line-height: 30px;
+}
+
+.highlight.audio {
+    color: var(--color-secondary);
+    font-size: 44px;
+    text-shadow: none;
+    display: block;
+    padding: 14px;
+    transition: 0.5s;
+}
+
+.highlight.audio:hover {
+    color: var(--color-primary);
+    background-color: var(--color-accent);
+}
+
+/* #endregion Text */
+
+/* #region Navigation Overlay */
+
+.nav-transition-overlay {
+    z-index: 2;
+    width: 100vw;
+    height: 0%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: var(--color-primary);
+    opacity: 0;
+    transition: opacity 0.5s, height 0.001s 0.5s;
+}
+
+.nav-transition-overlay.visible {
+    height: 100%;
+    opacity: 1;
+    transition: opacity 0.5s, height 0.001s;
+    pointer-events: all;
+}
+
+/* #endregion Navigation Overlay */
+
+/* #region Sections */
+
+.section-container {
+    height: 100vh;
+    /* Overlay the ScrollBar on top of content */
+    overflow-y: overlay;
+    overflow-x: hidden;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+}
+
+section {
+    height: 100%;
+    display: grid;
+    grid-template-rows: 100%;
+    /* Make the Background a bit Transparent so that the element behind is visible */
+    background: rgba(0, 0, 0, 0.3);
+    scroll-snap-align: center;
+}
+
+    /* #region Hero */
+
+    section.hero {
+        display: grid;
+        grid-template-areas: "navbar"
+                             "content";
+        grid-template-rows: 70px 1fr;
+        /* Make the Background a bit Transparent so that the element behind is visible */
+        background: rgba(0,0,0,0.6);
+    }
+
+    section.hero .navbar {
+        z-index: 1;
+        width: 100vw;
+        grid-row: navbar / navbar;
+        grid-column: navbar / navbar;
+        align-self: flex-start;
+        padding-block: 13px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    section.hero .navbar .link {
+        display: block;
+        transition: 0.5s;
+    }
+
+    section.hero .navbar .link:hover {
+        color: var(--color-primary);
+        background-color: var(--color-accent);
+    }
+
+    section.hero .navbar .current-link {
+        border: 2px solid var(--color-accent);
+        color: var(--color-accent);
+        opacity: 0.7;
+        pointer-events: none;
+    }
+
+    section.hero .background {
+        /* Located Behind the Parent */
+        z-index: -1;
+        grid-row: navbar / content;
+        grid-column: navbar / content;
+        height: 100%;
+        clip-path: polygon(0 14%, 100% 8%, 100% 91%, 0 78%);
+    }
+
+    section.hero .content {
+        height: 100%;
+        width: 100%;
+        grid-row: navbar / content;
+        grid-column: navbar / content;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-self: center;
+    }
+
+    /* #endregion Hero */
+
+    /* #region Footer */
+
+    section.footer {
+        background: rgba(0,0,0,0.6);
+    }
+
+    section.footer .background {
+        /* Located Behind the Parent */
+        z-index: -1;
+        grid-row: 1;
+        grid-column: 1;
+        height: 100%;
+        background: url("../Media/Footer.jpg");
+        background-repeat: no-repeat;
+        background-position: top;
+        background-size: cover;
+        clip-path: polygon(100% 12%, 0 19%, 0 82%, 100% 76%);
+    }
+
+    section.footer .social-links {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        grid-row: 1;
+        grid-column: 1;
+        height: 100%;
+        width: 100%;
+    }
+
+    section.footer .social-link path {
+        transition: 300ms;
+        fill: var(--color-secondary);
+    }
+
+    section.footer .social-link:hover path {
+        fill: var(--color-accent);
+    }
+
+    section.footer h1 {
+        grid-row: 1;
+        grid-column: 1;
+        align-self: flex-end;
+    }
+
+    /* #endregion Footer */
+
+/* #endregion Sections */
+
+/* #region Scrollbar */
+
+::-webkit-scrollbar {
+    width: 0.4rem;
+}
+
+::-webkit-scrollbar-track {
+    /* Shorten the Height of the Track */
+    margin-block: 115px;
+    border: solid var(--color-secondary) 1px;
+    border-radius: 100vw;
+    background: var(--color-primary);
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 100vw;
+    background: var(--color-secondary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-accent);
+}
+
+/* #endregion Scrollbar */
+
+/* #region Revealable Elements */
+
+.revealable {
+    position: relative;
+    opacity: 0;
+    transition: all 1.5s ease;
+}
+
+.revealable.delay {
+    transition-delay: 700ms;
+}
+
+.revealable.scale-up {
+    transform: scale(0.9);
+}
+
+.revealable.scale-down {
+    transform: scale(1.1);
+}
+
+.revealable.left-to-right {
+    transform: translateX(-15px);
+}
+
+.revealable.right-to-left {
+    transform: translateX(15px);
+}
+
+.revealable.bottom-to-top {
+    transform: translateY(15px);
+}
+
+.revealable.top-to-bottom {
+    transform: translateY(-15px);
+}
+
+.revealable.reveal {
+    transform: translate(0);
+    opacity: 1;
+}
+
+/* #endregion Revealable Elements */
